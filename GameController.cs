@@ -18,7 +18,24 @@ namespace Asteroids
         private Shooting _shooting;
         private GameObject _player;
 
-        void Start()
+        private void Start()
+        {
+            Initialization();
+            CreateEnemyObjects();
+        }
+
+        private void Update()
+        {
+            _shooting.ShotLogic(_bullet, _barrel, _force);
+        }
+
+        private void FixedUpdate()
+        {
+            _ship.MovementLogic(_rigidbody, _speed);
+            _ship.JumpLogic(_rigidbody, _jumpForce);
+        }
+
+        private void Initialization()
         {
             _camera = Camera.main;
             _player = Instantiate(Resources.Load("Ship", typeof(GameObject))) as GameObject;
@@ -32,15 +49,18 @@ namespace Asteroids
             _barrel = _player.GetComponent<Transform>().Find("Barrel");
         }
 
-        void Update()
+        private void CreateEnemyObjects()
         {
-            _shooting.ShotLogic(_bullet, _barrel, _force);
-        }
+            Enemy.CreateAsteroidEnemy(new Health(100.0f, 100.0f));
 
-        void FixedUpdate()
-        {
-            _ship.MovementLogic(_rigidbody, _speed);
-            _ship.JumpLogic(_rigidbody, _jumpForce);
+            IEnemyFactory factory = new AsteroidFactory();
+            factory.Create(new Health(100.0f, 100.0f));
+
+            Enemy.Factory = factory;
+
+            Enemy.Factory.Create(new Health(100.0f, 100.0f));
+
+
         }
     }
 }
