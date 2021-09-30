@@ -17,6 +17,8 @@ namespace Asteroids
         private Ship _ship;
         private Shooting _shooting;
         private GameObject _player;
+        private float _asteroidMaxHp = 100.0f;
+        private float _asteroidCurrentHp = 100.0f;
 
         private void Start()
         {
@@ -51,16 +53,16 @@ namespace Asteroids
 
         private void CreateEnemyObjects()
         {
-            Enemy.CreateAsteroidEnemy(new Health(100.0f, 100.0f));
+            //запуск статического фабричного метода
+            Enemy.CreateAsteroidEnemy(new Health(_asteroidMaxHp, _asteroidCurrentHp));
 
+            //запуск нестатического фабричного метода
             IEnemyFactory factory = new AsteroidFactory();
-            factory.Create(new Health(100.0f, 100.0f));
+            factory.Create(new Health(_asteroidMaxHp, _asteroidCurrentHp));
 
+            //можно этот класс вынести в статическое поле класса
             Enemy.Factory = factory;
-
-            Enemy.Factory.Create(new Health(100.0f, 100.0f));
-
-
+            Enemy.Factory.CreateAsteroidGreen(new Health(_asteroidMaxHp, _asteroidCurrentHp));
         }
     }
 }
