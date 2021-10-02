@@ -5,12 +5,12 @@ namespace Asteroids
     //висит на префабе астероида
     internal sealed class Asteroid : Enemy
     {
-        private int _speed = 1;
+        private int _speed = 10;
         private int _damage = 1;
         private Vector3 _direction;
         private Rigidbody _rigidbody;
 
-        private void FixedUpdate()
+        private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             var minValue = -1;

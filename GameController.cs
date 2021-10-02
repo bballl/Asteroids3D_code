@@ -53,14 +53,11 @@ namespace Asteroids
 
         private void CreateEnemyObjects()
         {
-            //запуск статического фабричного метода
             Enemy.CreateAsteroidEnemy(new Health(_asteroidMaxHp, _asteroidCurrentHp));
 
-            //запуск нестатического фабричного метода
             IEnemyFactory factory = new AsteroidFactory();
             factory.Create(new Health(_asteroidMaxHp, _asteroidCurrentHp));
 
-            //можно этот класс вынести в статическое поле класса
             Enemy.Factory = factory;
             Enemy.Factory.CreateAsteroidGreen(new Health(_asteroidMaxHp, _asteroidCurrentHp));
         }

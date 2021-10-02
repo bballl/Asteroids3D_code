@@ -26,7 +26,6 @@ namespace Asteroids
         public static IEnemyFactory Factory;
         public Health Health { get; protected set; }
 
-        //использование статического фабричного метода создания астероида
         public static Asteroid CreateAsteroidEnemy(Health hp)
         {
             var enemy = Instantiate(Resources.Load<Asteroid>("Enemy/AsteroidBlue"));
