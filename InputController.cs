@@ -2,7 +2,7 @@
 
 namespace Asteroids
 {
-    internal class InputController
+    internal class InputController : MonoBehaviour
     {
         private float _jumpButton;
 

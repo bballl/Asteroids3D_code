@@ -4,7 +4,7 @@ namespace Asteroids
 {
     internal sealed class GameController : MonoBehaviour
     {
-        [SerializeField] private GameObject _bullet;
+        //[SerializeField] private GameObject _bullet;
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
         [SerializeField] private float _hp;
@@ -28,7 +28,7 @@ namespace Asteroids
 
         private void Update()
         {
-            _shooting.ShotLogic(_bullet, _barrel, _force);
+            _shooting.ShotLogic(_barrel, _force);
         }
 
         private void FixedUpdate()

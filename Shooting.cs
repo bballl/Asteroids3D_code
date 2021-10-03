@@ -1,19 +1,30 @@
 ﻿using UnityEngine;
+using System.Threading;
+using System.Collections;
 
 namespace Asteroids
 {
     internal sealed class Shooting : InputController
     {
-        private float _time = 3.0f;
+        private CreateBullet _createBullet;
+        private float _waitTime = 3.0f;
 
-        public void ShotLogic(GameObject bullet, Transform barrel, float force)
+        public Shooting()
+        {
+            _createBullet = new CreateBullet();
+        }
+
+        public void ShotLogic(Transform barrel, float force)
         {
             if (GetFireButton())
             {
-                var temAmmunition = Object.Instantiate(bullet, barrel.position, barrel.rotation);
-                var rigidbody = temAmmunition.GetComponent<Rigidbody>();
+                var bullet = _createBullet.Create();
+                bullet.transform.position = barrel.position;
+                bullet.transform.rotation = barrel.rotation;
+                bullet.SetActive(true);
+
+                var rigidbody = bullet.GetComponent<Rigidbody>();
                 rigidbody.AddForce(barrel.up * force);
-                Object.Destroy(temAmmunition, _time);
             }
         }
     }

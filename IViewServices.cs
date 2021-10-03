@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ObjectPool
+namespace Asteroids
 {
     internal interface IViewServices
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
  
 
-namespace ObjectPool
+namespace Asteroids
 {
     internal sealed class ObjectPool : IDisposable
     {

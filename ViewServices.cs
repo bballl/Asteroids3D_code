@@ -2,14 +2,14 @@
 using System.Threading;
 using UnityEngine;
 
-namespace ObjectPool
+namespace Asteroids
 {
-    internal sealed class ViewServices : IViewServices
+    internal sealed class ViewServices
     {
         private readonly Dictionary<string, ObjectPool> _viewCache
             = new Dictionary<string, ObjectPool>(12);
 
-        public void Create(GameObject prefab)
+        public GameObject Create(GameObject prefab)
         {
             if (!_viewCache.TryGetValue(prefab.name, out ObjectPool viewPool))
             {
@@ -17,7 +17,7 @@ namespace ObjectPool
                 _viewCache[prefab.name] = viewPool;
             }
 
-            viewPool.Pop();
+            return viewPool.Pop();
         }
 
         public void Destroy(GameObject prefab)
