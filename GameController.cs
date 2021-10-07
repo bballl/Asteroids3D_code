@@ -13,6 +13,7 @@ namespace Asteroids
 
         private ViewServices _viewServices;
         private Bullet _bullet;
+        
         private Camera _camera;
         private Transform _barrel;
         private Rigidbody _rigidbody;
