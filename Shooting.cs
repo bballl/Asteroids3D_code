@@ -26,7 +26,7 @@ namespace Asteroids
                 var rigidbody = bullet.GetComponent<Rigidbody>();
                 rigidbody.AddForce(barrel.up * force);
 
-                StartCoroutine(DeleteBullet(bullet));
+                //StartCoroutine(DeleteBullet(bullet));
             }
         }
 

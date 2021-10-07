@@ -13,12 +13,12 @@ namespace Asteroids
 
         private ViewServices _viewServices;
         private Bullet _bullet;
-        
         private Camera _camera;
         private Transform _barrel;
         private Rigidbody _rigidbody;
         private Ship _ship;
         private Shooting _shooting;
+        private RocketStart _rocketStart;
         private GameObject _player;
         private float _asteroidMaxHp = 100.0f;
         private float _asteroidCurrentHp = 100.0f;
@@ -32,6 +32,7 @@ namespace Asteroids
         private void Update()
         {
             _shooting.ShotLogic(_barrel, _force);
+            _rocketStart.RocketStartLogic(_barrel, _force);
         }
 
         private void FixedUpdate()
@@ -46,6 +47,7 @@ namespace Asteroids
             _viewServices = new ViewServices();
             _bullet = new Bullet(_viewServices);
             _shooting = new Shooting(_bullet);
+            _rocketStart = new RocketStart();
 
             _player = Instantiate(Resources.Load("Ship", typeof(GameObject))) as GameObject;
             _rigidbody = _player.GetComponent<Rigidbody>();

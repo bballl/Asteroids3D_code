@@ -2,7 +2,7 @@
 
 namespace Asteroids
 {
-    internal class InputController : MonoBehaviour
+    internal class InputController
     {
         private float _jumpButton;
 
@@ -30,6 +30,11 @@ namespace Asteroids
         public bool GetFireButton()
         {
             return Input.GetButtonDown("Fire1");
+        }
+
+        public bool GetRocketStartButton()
+        {
+            return Input.GetButtonDown("Fire2");
         }
     }
 }
