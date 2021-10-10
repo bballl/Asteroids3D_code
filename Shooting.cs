@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Threading;
+using System;
 using System.Collections;
 
 namespace Asteroids
 {
     internal sealed class Shooting : InputController
     {
+        //public event Action ShootingEvent;
         private Bullet _bullet;
+        private GameObject _bulletPrefab;
         private float _waitTime = 3.0f;
 
         public Shooting(Bullet bullet)
@@ -23,12 +25,28 @@ namespace Asteroids
                 bullet.transform.rotation = barrel.rotation;
                 bullet.SetActive(true);
 
+                //_bulletPrefab = bullet;
+
+
+
+                bullet.GetComponent<BulletTimer>().Test += _bullet.TestMethod;
+                bullet.GetComponent<BulletTimer>().Test += TimeObserver;
+                //bullet.GetComponent<BulletTimer>().Test += _bullet.DestroyBullet;
+
                 var rigidbody = bullet.GetComponent<Rigidbody>();
                 rigidbody.AddForce(barrel.up * force);
-
-                //StartCoroutine(DeleteBullet(bullet));
             }
+
+
         }
+
+        public void TimeObserver()
+        {
+            Debug.Log("TimeObserver стартовал");
+            //_bullet.DestroyBullet(_bulletPrefab);
+        }
+
+
 
         //При попытке вызвать DeleteBullet у меня возникает NullReferenceException. Я пытался и так и сяк,
         //переносил аналогичные действия с корутиной

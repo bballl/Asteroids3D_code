@@ -7,6 +7,7 @@ namespace Asteroids
         protected GameObject _gameObject;
 
         public GameObjectBuilder() => _gameObject = new GameObject();
+
         protected GameObjectBuilder(GameObject gameObject) => _gameObject = gameObject;
 
         public GameObjectVisualBuilder Visual => new GameObjectVisualBuilder(_gameObject);

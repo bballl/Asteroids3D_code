@@ -27,3 +27,11 @@ namespace Asteroids
         }
     }
 }
+//Роман, хочу попросить прокомментировать происходящее в 7-й строке.
+//Если вместо нее написать так:
+// public GameObjectVisualBuilder(GameObject gameObject)
+// {
+//     _gameObject = gameObject;
+// }
+//Получится то же самое или нет?
+//Ведь GameObjectVisualBuilder, будучи наследником GameObjectBuilder, получает от него поле _gameObject ?
