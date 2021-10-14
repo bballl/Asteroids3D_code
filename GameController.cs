@@ -5,72 +5,80 @@ namespace Asteroids
     internal sealed class GameController : MonoBehaviour
     {
         //[SerializeField] private GameObject _bullet;
-        [SerializeField] private float _speed;
-        [SerializeField] private float _acceleration;
-        [SerializeField] private float _hp;
-        [SerializeField] private float _force;
-        [SerializeField] private float _jumpForce;
-
-        private ViewServices _viewServices;
-        private Bullet _bullet;
+        //[SerializeField] private float _speed;
+        //[SerializeField] private float _acceleration;
         
-        private Camera _camera;
-        private Transform _barrel;
-        private Rigidbody _rigidbody;
-        private Ship _ship;
-        private Shooting _shooting;
-        private RocketStart _rocketStart;
-        private GameObject _player;
-        private float _asteroidMaxHp = 100.0f;
-        private float _asteroidCurrentHp = 100.0f;
+        //[SerializeField] private float _force;
+        //[SerializeField] private float _jumpForce;
+
+        private Facade _facade;
+        private Data _data;
+
+        //private ViewServices _viewServices;
+        //private Bullet _bullet;
+        
+        
+        private Rigidbody _rigidbody => _facade._rigidbody;
+        private Ship Ship => _facade._ship;
+        private Shooting Shooting => _facade._shooting;
+        private RocketStart RocketStart => _facade._rocketStart;
+        
 
         private void Start()
         {
             Initialization();
-            CreateEnemyObjects();
+            //facade.CreateEnemyObjects();
         }
 
         private void Update()
         {
-            _shooting.ShotLogic(_barrel, _force);
-            _rocketStart.RocketStartLogic(_barrel, _force);
+            Shooting.ShotLogic(_facade._barrel, _data.Force);
+            RocketStart.RocketStartLogic(_facade._barrel, _data.Force);
         }
 
         private void FixedUpdate()
         {
-            _ship.MovementLogic(_rigidbody, _speed);
-            _ship.JumpLogic(_rigidbody, _jumpForce);
+            Ship.MovementLogic(_rigidbody, _data.Speed);
+            Ship.JumpLogic(_rigidbody, _data.JumpForce);
         }
 
         private void Initialization()
         {
-            _camera = Camera.main;
-            _viewServices = new ViewServices();
-            _bullet = new Bullet(_viewServices);
-            _shooting = new Shooting(_bullet);
-            _rocketStart = new RocketStart();
+            _facade = new Facade();
+            _data = new Data();
 
-            _player = Instantiate(Resources.Load("Ship", typeof(GameObject))) as GameObject;
-            _rigidbody = _player.GetComponent<Rigidbody>();
+            //_ship = _facade._ship;
+            //_player = _facade._player;
+            //_rigidbody = _facade._rigidbody;
 
-            var moveShip = new MoveShip(_speed);
-            var jumpShip = new JumpShip();
 
-            _ship = new Ship(moveShip, jumpShip);
             
-            _barrel = _player.GetComponent<Transform>().Find("Barrel");
+            //_viewServices = new ViewServices();
+            //_bullet = new Bullet(_viewServices);
+            //_shooting = new Shooting(_bullet);
+            //_rocketStart = new RocketStart();
+
+            //_player = Instantiate(Resources.Load("Ship", typeof(GameObject))) as GameObject;
+            //_rigidbody = _player.GetComponent<Rigidbody>();
+
+            //var moveShip = new MoveShip(_speed);
+            //var jumpShip = new JumpShip();
+
+            //_ship = new Ship(moveShip, jumpShip);
+            
+            //_barrel = _player.GetComponent<Transform>().Find("Barrel");
         }
 
-        private void CreateEnemyObjects()
-        {
-            Enemy.CreateAsteroidEnemy(new Health(_asteroidMaxHp, _asteroidCurrentHp));
+        //private void CreateEnemyObjects()
+        //{
+        //    Enemy.CreateAsteroidEnemy(new Health(_asteroidMaxHp, _asteroidCurrentHp));
 
-            IEnemyFactory factory = new AsteroidFactory();
-            factory.Create(new Health(_asteroidMaxHp, _asteroidCurrentHp));
+        //    IEnemyFactory factory = new AsteroidFactory();
+        //    factory.Create(new Health(_asteroidMaxHp, _asteroidCurrentHp));
 
-            Enemy.Factory = factory;
-            Enemy.Factory.CreateAsteroidGreen(new Health(_asteroidMaxHp, _asteroidCurrentHp));
-        }
+        //    Enemy.Factory = factory;
+        //    Enemy.Factory.CreateAsteroidGreen(new Health(_asteroidMaxHp, _asteroidCurrentHp));
+        //}
     }
 }
 
