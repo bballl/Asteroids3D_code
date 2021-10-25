@@ -11,6 +11,8 @@ namespace AsteroidsState
         
         private void Start()
         {
+            _listener = new Listener();
+            _listener.Add(_player);
             _player = new Player(new StateNeutral());
         }
 
