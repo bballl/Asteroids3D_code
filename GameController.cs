@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 namespace Asteroids
 {
@@ -11,6 +12,9 @@ namespace Asteroids
         private Ship Ship => _facade.Ship;
         private Shooting Shooting => _facade.Shooting;
         private RocketStart RocketStart => _facade.RocketStart;
+
+        public float _time = 0f;
+        public event Action Test;
 
         private void Start()
         {
@@ -34,6 +38,7 @@ namespace Asteroids
             _facade = new Facade();
             _data = new Data();
         }
+
     }
 }
 

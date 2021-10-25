@@ -6,19 +6,19 @@ namespace Asteroids
 {
     internal sealed class Shooting : InputController
     {
-        private Bullet _bullet;
+        private BulletCreateAndDestroy _bulletCreateAndDestroy;
         private float _waitTime = 3.0f;
 
-        public Shooting(Bullet bullet)
+        public Shooting(BulletCreateAndDestroy bullet)
         {
-            _bullet = bullet;
+            _bulletCreateAndDestroy = bullet;
         }
 
         public void ShotLogic(Transform barrel, float force)
         {
             if (GetFireButton())
             {
-                var bullet = _bullet.CreateBullet();
+                var bullet = _bulletCreateAndDestroy.CreateBullet();
                 bullet.transform.position = barrel.position;
                 bullet.transform.rotation = barrel.rotation;
                 bullet.SetActive(true);
@@ -32,7 +32,7 @@ namespace Asteroids
         {
             Debug.Log("короутина старт");
             yield return new WaitForSeconds(_waitTime);
-            _bullet.DestroyBullet(bullet);
+            _bulletCreateAndDestroy.DestroyBullet(bullet);
         }
     }
 }

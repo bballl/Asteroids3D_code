@@ -16,7 +16,7 @@ namespace Asteroids
         private float AsteroidCurrentHp => _data.AsteroidCurrentHp;
 
         private ViewServices _viewServices;
-        private Bullet _bullet;
+        private BulletCreateAndDestroy _bullet;
         private Data _data;
 
         public Facade()
@@ -41,7 +41,7 @@ namespace Asteroids
         public void ShootingInitialization()
         {
             _viewServices = new ViewServices();
-            _bullet = new Bullet(_viewServices);
+            _bullet = new BulletCreateAndDestroy(_viewServices);
             Shooting = new Shooting(_bullet);
             RocketStart = new RocketStart();
         }

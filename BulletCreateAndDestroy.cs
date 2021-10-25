@@ -3,12 +3,12 @@ using System.Collections;
 
 namespace Asteroids
 {
-    internal sealed class Bullet
+    internal sealed class BulletCreateAndDestroy
     {
         private GameObject _bulletPrefab;
         private ViewServices _viewServices;
 
-        public Bullet(ViewServices viewServices)
+        public BulletCreateAndDestroy(ViewServices viewServices)
         {
             _bulletPrefab = Resources.Load("Ammunition/Bullet") as GameObject;
             _viewServices = viewServices;
