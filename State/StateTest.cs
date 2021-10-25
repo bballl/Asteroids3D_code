@@ -6,6 +6,7 @@ namespace AsteroidsState
     public sealed class StateTest : MonoBehaviour
     {
         private Player _player;
+        private Listener _listener;
         private float _waitTime = 3.0f;
         
         private void Start()

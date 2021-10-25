@@ -4,9 +4,11 @@ namespace AsteroidsState
 {
     public sealed class StateNeutral : IState
     {
-        public StateNeutral()
+        public string Info()
         {
-            Debug.Log("Ожидание");
+            //Debug.Log("Ожидание");
+            var info = "Ожидание";
+            return info;
         }
     }
 }

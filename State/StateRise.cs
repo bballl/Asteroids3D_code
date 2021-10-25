@@ -4,9 +4,11 @@ namespace AsteroidsState
 {
     public sealed class StateRise : IState
     {
-        public StateRise()
+        public string Info()
         {
-            Debug.Log("Взлет");
+            //Debug.Log("Взлет");
+            var info = "Взлет";
+            return info;
         }
     }
 }

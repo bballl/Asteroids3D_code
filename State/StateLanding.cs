@@ -4,9 +4,11 @@ namespace AsteroidsState
 {
     public sealed class StateLanding : IState
     {
-        public StateLanding()
+        public string Info()
         {
-            Debug.Log("Посадка");
+            //Debug.Log("Посадка");
+            var info = "Посадка";
+            return info;
         }
     }
 }
